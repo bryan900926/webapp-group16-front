@@ -7,32 +7,34 @@
 **Method:** `GET`
 **Endpoint:** `/api/v1/portfolio/{userId}`
 
-**Response:**
+**Success Response:**
 
 ```json
 {
-  "portfolios": {
-    "portfolio1": [
-      {"ratio": 10, "assetName": "TSMC"},
-      {"ratio": 90, "assetName": "AAPL"}
-    ],
-    "portfolio2": [
-      {"ratio": 10, "assetName": "TSMC"},
-      {"ratio": 90, "assetName": "AAPL"}
-    ],
-    "portfolio3": [
-      {"ratio": 10, "assetName": "TSMC"},
-      {"ratio": 90, "assetName": "AAPL"}
-    ]
-  },
+  "data": [
+    {"name": "portfolio1",
+     "allocation":
+      {"TSMC":10}, //companyname: ratio(%)
+      {"AAPL":90}
+    },
+    {"name": "portfolio1",
+     "allocation":
+      {"TSMC":10}, //companyname: ratio(%)
+      {"AAPL":90}
+    },
+  ],
   "code": 1,
   "message": "Portfolio successfully added"
 }
+```
 
+**Failure Response:**
+
+```json
 {
-    "portfolios": [],
-    "code": 0,
-    "message": "portfolio fail to be added"
+  "data": [],
+  "code": 0,
+  "message": "portfolio fail to be added"
 }
 ```
 
@@ -51,25 +53,30 @@
 
 ```json
 {
-  "portfolioName": [
-    { "ratio": 10, "assetName": "TSMC" },
-    { "ratio": 90, "assetName": "AAPL" }
-  ]
+  "portfolioName": { "TSMC": 10, "AAPL": 90 }
 }
 ```
 
-**Response:**
+**Sucess Response:**
 
 ```json
 {
-    "portfolioName": [{"ratio":10, "assetName": "TSMC"}, {"ratio":90, "assetName": "AAPL"}],
-    "code": 1,
-    "message": "portfolio successfully added"
+  "data": {
+    "name": "portfolioName",
+    "allocation": { "TSMC": 10, "APPL": 90 }
+  },
+  "code": 1,
+  "message": "portfolio successfully added"
 }
+```
+
+**Failure Response:**
+
+```json
 {
-    "assets": [],
-    "code": 0,
-    "message": "portfolio fail to be added"
+  "data": {},
+  "code": 0,
+  "message": "portfolio fail to be added"
 }
 ```
 
@@ -88,15 +95,62 @@
 | `userId`        | number | ✅       | id of user.        |
 | `portfolioName` | string | ✅       | name of portfolio. |
 
-**Response:**
+**Success Response:**
 
 ```json
 {
-    "code": 1,
-    "message": "portfolio successfully deleted"
+  "code": 1,
+  "message": "portfolio successfully deleted"
 }
+```
+
+**Failure Response:**
+
+```json
 {
-    "code": 0,
-    "message": "portfolio fail to be deleted"
+  "code": 0,
+  "message": "portfolio fail to be deleted"
+}
+```
+
+### 🔹 API: `pertfolioPerformance`
+
+**Description:**
+
+- Get portfolio performance for user
+
+**Method:** `DELETE`
+**Endpoint:** `/api/v1/portfolio/performance/{userId}/{portfolioName}`
+**Parameter**
+
+| Name            | Type   | Required | Description        |
+| --------------- | ------ | -------- | ------------------ |
+| `userId`        | number | ✅       | id of user.        |
+| `portfolioName` | string | ✅       | name of portfolio. |
+
+**Success Response:**
+
+```json
+{
+  "code": 1,
+  "data": {
+    "name": "portfolioName",
+    "history": {
+      "2024-01-01": 100, //data:price
+      "2024-01-02": 101,
+      "2024-01-03": 102
+    }
+  },
+  "message": "portfolio history successfully retrieved"
+}
+```
+
+**Failure Response:**
+
+```json
+{
+  "code": 0,
+  "data": {},
+  "message": "portfolio history fail to be retrieved"
 }
 ```

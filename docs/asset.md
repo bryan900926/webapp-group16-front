@@ -8,18 +8,31 @@
 **Method:** `GET`
 **Endpoint:** `api/v1/assets`
 **Parameters:**
-**Response:**
+**Success Response:**
 
 ```json
 {
-    "assets": ["XXX ETF", "TSMC", "AAPL"],
+    "data":  {
+      "assets":
+      ["XXX ETF", "TSMC", "AAPL"]
+    },
     "code": 1,
     "message": "the total assets class is retrieved"
 }
 {
-    "assets": [],
+    "data": {},
     "code": 0,
     "message": "the total assets class is fail to be retrieved"
+}
+```
+
+**Failure Response:**
+
+```json
+{
+  "data": {},
+  "code": 0,
+  "message": "the total assets class is fail to be retrieved"
 }
 ```
 
@@ -50,18 +63,23 @@
 | ----------- | ------ | -------- | -------------- |
 | `assetName` | string | ✅       | name of asset. |
 
-**Response:**
+**Success Response:**
 
 ```json
 {
-    "asset": "XXX ETF",
-    "historicalPrice":["2024-01-01":100, "2024-01-01":100, "2024-01-01":120],
+    "data": {
+      "assetName": "XXX ETF",
+      "historicalPrice":{
+        "2024-01-01":100,
+        "2024-01-01":100,
+        "2024-01-01":120
+      },
+    },
     "code":  1,
     "message": "the historical price is successfully retrieved"
 }
 {
-    "asset": "",
-    "historicalPrice":"",
+    "data": {},
     "code": 0,
     "message": "the historical price is fail to be retrieved",
 }

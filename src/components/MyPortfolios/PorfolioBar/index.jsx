@@ -1,6 +1,7 @@
 import "./index.css";
 import { useState } from "react";
 import PortfolioEdit from "../PortfolioEdit";
+import PortfolioAllocationPieChart from "../PortfolioAllocationPieChart";
 import Modal from "../../Modal";
 
 export default function PortfolioBar({ portfolioData }) {
@@ -8,8 +9,8 @@ export default function PortfolioBar({ portfolioData }) {
   const portfolioName = portfolioData.name;
   return (
     <div className="portfolio-bar">
-      <h4>{portfolioName}</h4>
       <PortfolioTable portfolioData={portfolioData} />
+      <PortfolioAllocationPieChart data={portfolioData.assets} />
     </div>
   );
 }
@@ -20,7 +21,8 @@ function PortfolioTable({ portfolioData }) {
   const openEditModal = () => setShowEditModal(true);
   const closeEditModal = () => setShowEditModal(false);
   return (
-    <div>
+    <div style={{width:"50%"}}>
+      <h4 style={{marginBottom: "50px"}}>{portfolioData.name}</h4>
       <table className="portfolio-table">
         <tbody>
           <tr>
@@ -35,7 +37,9 @@ function PortfolioTable({ portfolioData }) {
           ))}
         </tbody>
       </table>
-      <button className="edit-portfolio-btn" onClick={openEditModal}>Edit Portfolio</button>
+      <button className="edit-portfolio-btn" onClick={openEditModal}>
+        Edit Portfolio
+      </button>
       {showEditModal && (
         <Modal onClose={closeEditModal}>
           <PortfolioEdit portfolioData={portfolioData} />

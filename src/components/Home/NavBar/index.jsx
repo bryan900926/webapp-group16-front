@@ -1,6 +1,6 @@
 import "./index.css";
 import { Link } from "react-router-dom";
-import { ChartCandlestick, CircleDollarSign, Settings } from "lucide-react";
+import { ChartCandlestick, CircleDollarSign, Settings, TrendingUpDown } from "lucide-react";
 
 export default function NavBar() {
   return (
@@ -15,6 +15,12 @@ export default function NavBar() {
           <Link to="/home/portfolio">
             <CircleDollarSign />
             My Portfolio
+          </Link>
+        </li>
+        <li className="home-nav-link">
+          <Link to="/home/stimulation">
+            <TrendingUpDown />
+            Stimulation
           </Link>
         </li>
         <li className="home-nav-link">

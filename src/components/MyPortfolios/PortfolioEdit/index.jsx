@@ -84,7 +84,7 @@ export default function PortfolioEdit({ portfolioData }) {
                     <input
                       id=""
                       type="number"
-                      value={asset.allocation}
+                      value={asset.quantity || 0}
                       onChange={(e) =>
                         handleAllocationChange(index, e.target.value)
                       }

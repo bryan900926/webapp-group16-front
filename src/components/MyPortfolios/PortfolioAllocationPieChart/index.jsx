@@ -2,7 +2,15 @@ import { PieChart, Pie, Cell, Legend } from "recharts";
 
 export default function PortfolioAllocationPieChart({ data }) {
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF"];
-  console.log(data);
+  const totalValue = data.reduce(
+    (sum, asset) => sum + asset.quantity * asset.price,
+    0
+  );
+  data = data.map((asset) => ({
+    ...asset,
+    allocation:
+      (((asset.quantity * asset.price) / totalValue) * 100),
+  }));
   return (
     <PieChart width={400} height={400}>
       <Pie
@@ -12,7 +20,7 @@ export default function PortfolioAllocationPieChart({ data }) {
         outerRadius="50%"
         fill="#8884d8"
         paddingAngle={5}
-        nameKey="assetName"
+        nameKey="ticker"
         dataKey="allocation"
         label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
       >

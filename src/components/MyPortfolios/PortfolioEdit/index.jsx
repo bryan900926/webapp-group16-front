@@ -108,10 +108,11 @@ export default function PortfolioEdit({ portfolioData }) {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
           marginTop: "16px",
         }}
       >
+        <button className="save-btn">Save</button>
         <button className="add-btn" onClick={addAsset}>
           + Add Asset
         </button>

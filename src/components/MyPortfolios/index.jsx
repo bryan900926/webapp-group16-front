@@ -6,9 +6,9 @@ export default function MyPortfolios() {
     {
       name: "Portfolio 1",
       assets: [
-        { assetName: "Bond", allocation: "40" },
-        { assetName: "Stock", allocation: "30" },
-        { assetName: "Cash", allocation: "30" },
+        { assetName: "Bond", allocation: 40 },
+        { assetName: "Stock", allocation: 30 },
+        { assetName: "Cash", allocation: 30 },
       ],
     },
   ];

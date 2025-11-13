@@ -12,16 +12,18 @@
 ```json
 {
   "data": [
-    {"name": "portfolio1",
-     "allocation":
-      {"TSMC":10}, //companyname: ratio(%)
-      {"AAPL":90}
-    },
-    {"name": "portfolio1",
-     "allocation":
-      {"TSMC":10}, //companyname: ratio(%)
-      {"AAPL":90}
-    },
+    {
+      "name": "portfolio1",
+      "price": {
+        // the lattest price of compaany
+        "TSMC": 1300,
+        "AAPL": 800
+      },
+      "quantity": {
+        "TSMC": 10,
+        "AAPL": 90
+      } //companyname: shares
+    }
   ],
   "code": 1,
   "message": "Portfolio successfully added"
@@ -42,18 +44,18 @@
 
 **Description:**
 
-- add new type of portfolio for use
+- add new type of portfolio for user
 - if not portfolio name exsit in the database, replacing the old one
 - I think adding and replacing logic can be merged in this fucntion ?
 
 **Method:** `POST`
-**Endpoint:** `/api/v1/portfolio/{userId}`
+**Endpoint:** `/api/v1/{portfolioId}/{userId}`
 **Content-Type:** `application/json`
 **Request Body**
 
 ```json
 {
-  "portfolioName": { "TSMC": 10, "AAPL": 90 }
+  "portfolioId": { "TSMC": 10, "AAPL": 90 } //ticker:shares
 }
 ```
 
@@ -62,8 +64,8 @@
 ```json
 {
   "data": {
-    "name": "portfolioName",
-    "allocation": { "TSMC": 10, "APPL": 90 }
+    "portfolioId": "1",
+    "quantity": { "TSMC": 10, "APPL": 90 }
   },
   "code": 1,
   "message": "portfolio successfully added"
@@ -87,13 +89,13 @@
 - Delete portfolio for user
 
 **Method:** `DELETE`
-**Endpoint:** `/api/v1/portfolio/{userId}/{portfolioName}`
+**Endpoint:** `/api/v1/portfolio/{userId}/{portfolioId}`
 **Parameter**
 
 | Name            | Type   | Required | Description        |
 | --------------- | ------ | -------- | ------------------ |
 | `userId`        | number | ✅       | id of user.        |
-| `portfolioName` | string | ✅       | name of portfolio. |
+| `portfolioId` | string | ✅       | id of portfolio. |
 
 **Success Response:**
 

@@ -13,16 +13,20 @@
 {
   "data": [
     {
+      "portfolioId": 0,
       "name": "portfolio1",
-      "price": {
-        // the lattest price of compaany
-        "TSMC": 1300,
-        "AAPL": 800
-      },
-      "quantity": {
-        "TSMC": 10,
-        "AAPL": 90
-      } //companyname: shares
+      "assets": [
+        { "ticker": "TSMC", "price": 1300, "quantity": 10 }, //price is lattest price in db
+        { "ticker": "AAPL", "price": 500, "quantity": 10 }
+      ]
+    },
+    {
+      "portfolioId": 1,
+      "name": "portfolio2",
+      "assets": [
+        { "ticker": "GOOGL", "price": 700, "quantity": 10 },
+        { "ticker": "AAPL", "price": 500, "quantity": 10 }
+      ]
     }
   ],
   "code": 1,
@@ -64,7 +68,7 @@
 ```json
 {
   "data": {
-    "portfolioId": "1",
+    "portfolioId": 1,
     "quantity": { "TSMC": 10, "APPL": 90 }
   },
   "code": 1,
@@ -92,9 +96,9 @@
 **Endpoint:** `/api/v1/portfolio/{userId}/{portfolioId}`
 **Parameter**
 
-| Name            | Type   | Required | Description        |
-| --------------- | ------ | -------- | ------------------ |
-| `userId`        | number | ✅       | id of user.        |
+| Name          | Type   | Required | Description      |
+| ------------- | ------ | -------- | ---------------- |
+| `userId`      | number | ✅       | id of user.      |
 | `portfolioId` | string | ✅       | id of portfolio. |
 
 **Success Response:**

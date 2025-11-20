@@ -86,6 +86,57 @@
 }
 ```
 
+### 🔹 API: `CreateUserPortfolio`
+
+**Description:**
+
+- Create a new portfolio for user
+
+**Method:** `POST`
+**Endpoint:** `/api/v1/portfolio/create`
+**Content-Type:** `application/json`
+
+**Request Body**
+
+```json
+{
+  "userId": 1,
+  "name": "Tech Growth Portfolio",
+  "assets": [
+    { "ticker": "TSMC", "quantity": 10 },
+    { "ticker": "AAPL", "quantity": 50 }
+  ]
+}
+```
+
+**Success Response:**
+
+```json
+{
+  "data": {
+    "portfolioId": 2,
+    "name": "Tech Growth Portfolio",
+    "assets": {
+      "TSMC": 10,
+      "AAPL": 50
+    }
+  },
+  "code": 1,
+  "message": "Portfolio successfully created"
+}
+```
+
+**Failure Response:**
+
+```json
+{
+  "data": {},
+  "code": 0,
+  "message": "Portfolio fail to be created"
+}
+```
+
+
 ### 🔹 API: `deleteUserPortfolio`
 
 **Description:**
